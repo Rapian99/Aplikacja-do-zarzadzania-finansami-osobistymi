@@ -1,1 +1,1 @@
-# Aplikacja-do-zarzadzania-finansami-osobistymi
+# Aplikacja do zarzadzania finansami osobistymi
