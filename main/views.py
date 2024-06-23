@@ -92,7 +92,7 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  # Aktualizuj sesję
+            update_session_auth_hash(request, user)
             messages.success(request, "Your password was successfully updated!")
             if hasattr(request.user, "userprofile"):
                 request.user.userprofile.must_change_password = False
