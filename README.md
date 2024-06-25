@@ -21,3 +21,5 @@
    ```bash
    python3 manage.py runserver
    ```
+
+Your application will run on port 8000.
