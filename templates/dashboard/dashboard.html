@@ -28,6 +28,7 @@
                     <th>Account</th>
                     <th>Category</th>
                     <th>Amount</th>
+                    <th>Type</th>
                     <th>Description</th>
                 </tr>
             </thead>
@@ -39,6 +40,7 @@
                     <td>{{ transaction.account.name }}</td>
                     <td>{{ transaction.category.name }}</td>
                     <td>{{ transaction.amount }}</td>
+                    <td>{{transaction.transaction_type}}</td>
                     <td>{{ transaction.description }}</td>
                 </tr>
                 {% endfor %}
