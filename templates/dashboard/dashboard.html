@@ -31,6 +31,7 @@
                     <th>Description</th>
                 </tr>
             </thead>
+
             <tbody>
                 {% for transaction in transactions %}
                 <tr>
@@ -43,6 +44,14 @@
                 {% endfor %}
             </tbody>
         </table>
+        <h3>Total Spendings</h3>
+        <h3>{{total_spendings}}</h3>
+
+        <h3>Total Deposits</h3>
+        <h3>{{total_depo}}</h3>
+        <h3>Balance</h3>
+        <h3>{{balance}}</h3>
+        <p><a href="{% url 'create_transaction' %}">Create Transaction</a> </p>
 
         <h3>Total Amount by Category</h3>
         <div>
