@@ -35,11 +35,12 @@ def dashboard(request):
     balance=Balance(total_spendings,total_deposit)
 
     category_sums = (
-        Transaction.objects.filter(user=request.user)
+        Transaction.objects.filter(user=request.user,transaction_type="withdrawal")
         .values("category__name")
         .annotate(total_amount=Sum("amount"))
     )
 
+  #
     category_sums_list = list(category_sums)
     if category_sums_list:
         df = pd.DataFrame(category_sums_list)
