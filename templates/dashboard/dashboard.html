@@ -2,7 +2,9 @@
 <html>
 
 <head>
+    {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <title>Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -39,7 +41,7 @@
                     <td>{{ transaction.date }}</td>
                     <td>{{ transaction.account.name }}</td>
                     <td>{{ transaction.category.name }}</td>
-                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.amount}}{{transaction.currency.symbol}}</td>
                     <td>{{transaction.transaction_type}}</td>
                     <td>{{ transaction.description }}</td>
                 </tr>
