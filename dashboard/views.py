@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Transaction, Categories
 import plotly.express as px
 from django.db.models import Sum
+from .forms import TransactionForm
 import pandas as pd
 
 
@@ -67,3 +68,14 @@ def dashboard(request):
     }
 
     return render(request, "dashboard/dashboard.html", context)
+def create_transaction(request):
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            transaction = form.save(commit=False)
+            transaction.user = request.user
+            transaction.save()
+            return redirect('dashboard')  # Zmien ścieżkę na właściwy widok po zapisaniu
+    else:
+        form = TransactionForm()
+    return render(request, 'dashboard/create_transaction.html', {'form': form})
