@@ -4,12 +4,22 @@
 <head>
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Dashboard</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
+<div id="wsio">
+      <header id="nagluwek">
+        <div>
+
+            <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+
+        </div>
+        <h2>Twój Asystent Finansowy </h2>
+
+    </header>
     <div class="container">
         <h2>Dashboard</h2>
         <p>Welcome, {{ user.username }}!</p>
@@ -18,7 +28,7 @@
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
                 {% endfor %}
         </ul>
         {% endif %}
@@ -55,13 +65,21 @@
         <h3>{{total_depo}}</h3>
         <h3>Balance</h3>
         <h3>{{balance}}</h3>
-        <p><a href="{% url 'create_transaction' %}">Create Transaction</a> </p>
+        <a href="{% url 'create_transaction' %}" class="btnlike">Create Transaction</a>
 
         <h3>Total Amount by Category</h3>
         <div>
             {{ plot_div|safe }}
         </div>
     </div>
+</div>
+<footer id="stopa">
+        Skontaktuj się z nami
+Email: support@finansowyasystent.pl
+
+
+
+    </footer>
 </body>
 
 </html>

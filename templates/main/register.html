@@ -4,9 +4,21 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body id="wsio">
+     <header id="nagluwek">
+        <div>
+            <a href="../">
+            <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+            </a>
+        </div>
+        <h2>Twój Asystent Finansowy </h2>
+
+    </header>
+    <main id="login">
     <div class="container">
         <h2>Register</h2>
         <form method="post">
@@ -27,9 +39,17 @@
                 <label for="password2">Confirm Password:</label>
                 <input type="password" class="form-control" id="password2" name="password2">
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary" id="but">Register</button>
         </form>
     </div>
+</main>
+<footer id="stopa">
+        Skontaktuj się z nami
+Email: support@finansowyasystent.pl
+
+
+
+    </footer>
 </body>
 
 </html>

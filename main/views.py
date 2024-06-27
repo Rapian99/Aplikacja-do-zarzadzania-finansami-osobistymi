@@ -10,18 +10,9 @@ from .models import UserProfile
 
 
 def index(request):
-    return HttpResponse(
-        """
-        <h1>Hello, world. Main site !!!</h1>
-        <ul>
-            <li><a href="{}">Panel</a></li>
-            <li><a href="{}">Login</a></li>
-            <li><a href="{}">Register</a></li>
-        </ul>
-        """.format(
-            reverse("dashboard"), reverse("login"), reverse("register")
-        )
-    )
+    return render(request,"main/index.html")
+
+
 
 
 def login_view(request):

@@ -1,0 +1,60 @@
+#wsio{background-color: antiquewhite; font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+.btnlike{
+
+    display:inline-block;
+    color:#444;
+    border:1px solid #CCC;
+    background:#DDD;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    max-width: 100px;
+    padding: 5px;
+    text-align: center;
+
+
+}
+.btnlike:active {
+    color:red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+#nagluwek{
+            background-color: antiquewhite;
+            width: 100%;text-align: center;
+                        padding-bottom: 5px;}
+        #obrazek{width: 10%;}
+
+            #lewa{width: 30%;float: left;margin-left: 5%; height:50% ; }
+
+            #srodek{width: 30%; float: left;height:50%; text-align: center; padding-top: 5px;}
+
+            #prawa{width: 30%; float: left;margin-right: 5%;height:50%;}
+           
+            #stopa{height: 20%;width: 100%;float: left;text-align: center; padding-top: 10%;
+            
+            
+                color: #021826;
+
+                color:#2B8C83
+                
+                #ABD97E
+                
+                #79A637
+                
+                #F2EDDF
+            
+            
+            
+            
+            
+            }
+
+
+#but {background-color: #2B8C83;border-radius: 20px ; width: 50%;text-align: center;width: 50%;
+    padding-bottom: 10px; padding-top: 10px; margin: 1% 1% 1% 1%;color: white;
+
+}
+a{text-decoration: none;color: white;font-family: 'Comic Sans MS',  sans-serif;
+}
+#login{padding-top: 2%;}

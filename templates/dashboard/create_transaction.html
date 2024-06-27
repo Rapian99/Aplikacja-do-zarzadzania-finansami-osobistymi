@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utwórz Transakcję</title>
 </head>
-<body>
+<body id="wsio">
+     <header id="nagluwek">
+        <div>
+
+            <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+
+        </div>
+        <h2>Twój Asystent Finansowy </h2>
+
+    </header>
     <h1>Utwórz Nową Transakcję</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Zapisz</button>
     </form>
+<footer id="stopa">
+        Skontaktuj się z nami
+Email: support@finansowyasystent.pl
+
+
+
+    </footer>
 </body>
 </html>
