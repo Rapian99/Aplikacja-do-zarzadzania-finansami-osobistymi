@@ -5,12 +5,13 @@
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Dashboard</title>
+    <title>E$$KULPA</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="icon" type="image/png" sizes="22x32" href="{% static 'media/snake_ico.png' %}">
 </head>
 
-<body>
-<div id="wsio">
+<body id="wsio">
+
       <header id="nagluwek">
         <div>
 
@@ -58,21 +59,28 @@
                 {% endfor %}
             </tbody>
         </table>
+        <div id="alatabela">
+        <div id="alatabela_wiersze">
         <h3>Total Spendings</h3>
         <h3>{{total_spendings}}</h3>
+    </div>
 
-        <h3>Total Deposits</h3>
+    <div id="alatabela_wiersze"><h3>Total Deposits</h3>
         <h3>{{total_depo}}</h3>
-        <h3>Balance</h3>
+    </div id="alatabela_wiersze">
+        <div id="alatabela_wiersze"><h3>Balance</h3>
         <h3>{{balance}}</h3>
-        <a href="{% url 'create_transaction' %}" class="btnlike">Create Transaction</a>
+    </div>
 
+
+        <a href="{% url 'create_transaction' %}" class="btnlike" id="but">Create Transaction</a>
+    </div>
         <h3>Total Amount by Category</h3>
         <div>
             {{ plot_div|safe }}
         </div>
     </div>
-</div>
+
 <footer id="stopa">
         Skontaktuj się z nami
 Email: support@finansowyasystent.pl
@@ -80,6 +88,7 @@ Email: support@finansowyasystent.pl
 
 
     </footer>
+
 </body>
 
 </html>

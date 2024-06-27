@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Document</title>
+    <link rel="icon" type="image/png" sizes="22x32" href="{% static 'media/snake_ico.png' %}">
+    <title>E$$KULPA</title>
 
 
     </head>
@@ -25,17 +26,18 @@ Budżetowanie: Twórz i monitoruj swoje budżety miesięczne.
 Oszczędności: Wyznaczaj cele oszczędnościowe i śledź postępy.
 Raporty: Generuj szczegółowe raporty finansowe.
 Bezpieczeństwo: Twoje dane są chronione najwyższymi standardami bezpieczeństwa.
+<p></p>
     </div>
 
     <main id="srodek">
-       <button id="but"><a href="{% url 'dashboard' %}">Panel</a></button>
+        <a href="{% url 'dashboard' %}"><button id="but">Panel</button></a>
 
-       <button id="but"><a href="{% url 'login' %}">Login</a></button>
+        <a href="{% url 'login' %}"><button id="but">Login</button></a>
 
-        <button id="but"><a href="{% url 'register' %}">Register</a></button>
+        <a href="{% url 'register' %}"><button id="but">Register</button></a>
     </main>
     <div id="prawa">
-        Jak to działa?<br>
+        <h2>Jak to działa?</h2>
         Dodaj swoje wydatki.<br>
         Śledź je: Automatyczne aktualizacje i kategoryzacja transakcji.<br>
         Analizuj swoje wydatki : Personalizowane wykresy dostosowane do twoich potrzeb.
