@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>E$$KULPA</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" type="image/png" sizes="22x32" href="{% static 'media/snake_ico.png' %}">
+</head>
+
+<body id="wsio">
+     <header id="nagluwek">
+        <div>
+            <a href="../">
+            <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+            </a>
+        </div>
+        <h2>Twój Asystent Finansowy </h2>
+
+    </header>
+    <main id="login">
+    <div class="container">
+        <h2>Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password1">Password:</label>
+                <input type="password" class="form-control" id="password1" name="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password:</label>
+                <input type="password" class="form-control" id="password2" name="password2">
+            </div>
+            <button type="submit" class="btn btn-primary" id="but">Register</button>
+        </form>
+    </div>
+</main>
+<footer id="stopa">
+        Skontaktuj się z nami
+Email: support@finansowyasystent.pl
+
+
+
+    </footer>
+</body>
+
+</html>

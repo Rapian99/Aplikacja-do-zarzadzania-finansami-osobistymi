@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+</head>
+
+<body id="wsio">
+    <header id="nagluwek">
+        <div>
+            <a href="../">
+            <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+            </a>
+        </div>
+        <h2>Twój Asystent Finansowy </h2> 
+    <main id="login">
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary" id="but">Login</button>
+        </form>
+    </div>
+</main>
+<footer id="stopa">
+        Skontaktuj się z nami
+Email: support@finansowyasystent.pl
+
+
+
+    </footer>
+</body>
+
+</html>
