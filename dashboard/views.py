@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Transaction, Categories
+from .models import Transaction, Categories, WishlistItem
 import plotly.express as px
 from django.db.models import Sum
-from .forms import TransactionForm
+from .forms import TransactionForm, WishlistItemForm
 import pandas as pd
+import plotly.graph_objs as go
+from plotly.offline import plot
 
 
 @login_required
@@ -80,3 +82,44 @@ def create_transaction(request):
     else:
         form = TransactionForm()
     return render(request, 'dashboard/create_transaction.html', {'form': form})
+
+
+@login_required
+def dashboard(request):
+    transactions = Transaction.objects.filter(user=request.user)
+    wishlist_items = WishlistItem.objects.filter(user=request.user)
+    total_spendings = sum(t.amount for t in transactions if t.transaction_type == 'spending')
+    total_depo = sum(t.amount for t in transactions if t.transaction_type == 'deposit')
+    balance = total_depo - total_spendings
+    total_wishlist = sum(item.item_price for item in wishlist_items)
+    difference = total_depo - total_wishlist  # Obliczanie różnicy jako suma z transactions minus suma z wishlisty
+
+    if request.method == 'POST':
+        form = WishlistItemForm(request.POST)
+        if form.is_valid():
+            wishlist_item = form.save(commit=False)
+            wishlist_item.user = request.user
+            wishlist_item.save()
+            return redirect('dashboard')
+    else:
+        form = WishlistItemForm()
+
+    # Generowanie wykresu
+    categories = [t.category.name for t in transactions]
+    amounts = [t.amount for t in transactions]
+
+    fig = go.Figure([go.Bar(x=categories, y=amounts)])
+    plot_div = plot(fig, output_type='div')
+
+    context = {
+        'transactions': transactions,
+        'wishlist_items': wishlist_items,
+        'total_spendings': total_spendings,
+        'total_depo': total_depo,
+        'balance': balance,
+        'total_wishlist': total_wishlist,
+        'difference': difference,
+        'form': form,
+        'plot_div': plot_div,  # Przekazanie wykresu do kontekstu
+    }
+    return render(request, 'dashboard/dashboard.html', context)
