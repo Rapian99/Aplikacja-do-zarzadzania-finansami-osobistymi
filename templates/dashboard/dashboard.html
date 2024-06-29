@@ -50,7 +50,7 @@
                 <td>{{ transaction.date }}</td>
                 <td>{{ transaction.account.name }}</td>
                 <td>{{ transaction.category.name }}</td>
-                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.amount }}{{transaction.currency.symbol}}</td>
                 <td>{{ transaction.transaction_type }}</td>
                 <td>{{ transaction.description }}</td>
             </tr>
@@ -109,7 +109,7 @@
     <div id="alatabela">
         <h3>Total Wishlist</h3>
         <h3>{{ total_wishlist }}</h3>
-        <h3>Difference Between Wishlist and Your Deposit</h3>
+        <h3>Difference Between Wishlist and Balance</h3>
         <h3>{{ difference }}</h3>
     </div>
 
