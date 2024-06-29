@@ -12,83 +12,113 @@
 
 <body id="wsio">
 
-      <header id="nagluwek">
-        <div>
+<header id="nagluwek">
+    <div>
+        <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+    </div>
+    <h2>Twój Asystent Finansowy </h2>
+</header>
 
-            <img src="{% static 'media/snake.png' %}" alt="logo" id="obrazek">
+<div class="container">
+    <h2>Dashboard</h2>
+    <p>Welcome, {{ user.username }}!</p>
+    <a href="{% url 'change_password' %}" class="btn btn-warning">Change Password</a>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-        </div>
-        <h2>Twój Asystent Finansowy </h2>
+    <h3>Transactions</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Account</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.account.name }}</td>
+                <td>{{ transaction.category.name }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>{{ transaction.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    </header>
-    <div class="container">
-        <h2>Dashboard</h2>
-        <p>Welcome, {{ user.username }}!</p>
-        <a href="{% url 'change_password' %}" class="btn btn-warning">Change Password</a>
-        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
-        </ul>
-        {% endif %}
-        <h3>Transactions</h3>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Account</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {% for transaction in transactions %}
-                <tr>
-                    <td>{{ transaction.date }}</td>
-                    <td>{{ transaction.account.name }}</td>
-                    <td>{{ transaction.category.name }}</td>
-                    <td>{{ transaction.amount}}{{transaction.currency.symbol}}</td>
-                    <td>{{transaction.transaction_type}}</td>
-                    <td>{{ transaction.description }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div id="alatabela">
+    <div id="alatabela">
         <div id="alatabela_wiersze">
-        <h3>Total Spendings</h3>
-        <h3>{{total_spendings}}</h3>
-    </div>
-
-    <div id="alatabela_wiersze"><h3>Total Deposits</h3>
-        <h3>{{total_depo}}</h3>
-    </div id="alatabela_wiersze">
-        <div id="alatabela_wiersze"><h3>Balance</h3>
-        <h3>{{balance}}</h3>
-    </div>
-
-
+            <h3>Total Spendings</h3>
+            <h3>{{ total_spendings }}</h3>
+        </div>
+        <div id="alatabela_wiersze">
+            <h3>Total Deposits</h3>
+            <h3>{{ total_depo }}</h3>
+        </div>
+        <div id="alatabela_wiersze">
+            <h3>Balance</h3>
+            <h3>{{ balance }}</h3>
+        </div>
         <a href="{% url 'create_transaction' %}" class="btnlike" id="but">Create Transaction</a>
     </div>
-        <h3>Total Amount by Category</h3>
-        <div>
-            {{ plot_div|safe }}
-        </div>
+
+    <h3>Total Amount by Category</h3>
+    <div>
+        {{ plot_div|safe }}
     </div>
 
+    <h3>Wishlist</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date Added</th>
+                <th>Item</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in wishlist_items %}
+            <tr>
+                <td>{{ item.date_added }}</td>
+                <td>{{ item.item_name }}</td>
+                <td>{{ item.item_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4>Add to Wishlist</h4>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+
+    <div id="alatabela">
+        <h3>Total Wishlist</h3>
+        <h3>{{ total_wishlist }}</h3>
+        <h3>Difference Between Wishlist and Your Deposit</h3>
+        <h3>{{ difference }}</h3>
+    </div>
+
+</div>
+
 <footer id="stopa">
-        Skontaktuj się z nami
-Email: support@finansowyasystent.pl
-
-
-
-    </footer>
+    Skontaktuj się z nami
+    Email: support@finansowyasystent.pl
+</footer>
 
 </body>
-
 </html>
