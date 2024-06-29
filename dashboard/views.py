@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .models import Transaction, Categories
+from .models import Transaction, Categories, WishlistItem
 import plotly.express as px
 from django.db.models import Sum
-from .forms import TransactionForm
+from .forms import TransactionForm, WishlistItemForm
 import pandas as pd
+import plotly.graph_objs as go
+from plotly.offline import plot
 
 
 @login_required
@@ -33,6 +35,22 @@ def dashboard(request):
     total_spendings = SpendingsSum(transactions)
     total_deposit=DepositSum(transactions)
     balance=Balance(total_spendings,total_deposit)
+
+    ##Wishlist
+    wishlist_items = WishlistItem.objects.filter(user=request.user)
+    total_wishlist = sum(item.item_price for item in wishlist_items)
+    difference = balance - total_wishlist
+
+    if request.method == 'POST':
+        form = WishlistItemForm(request.POST)
+        if form.is_valid():
+            wishlist_item = form.save(commit=False)
+            wishlist_item.user = request.user
+            wishlist_item.save()
+            return redirect('dashboard')
+    else:
+        form = WishlistItemForm()
+
 
     category_sums = (
         Transaction.objects.filter(user=request.user,transaction_type="withdrawal")
@@ -65,7 +83,11 @@ def dashboard(request):
         "total_spendings":total_spendings,
         "total_depo":total_deposit,
         "balance": balance,
+        'total_wishlist': total_wishlist,
+        'difference': difference,
         "plot_div": plot_div,
+        'wishlist_items': wishlist_items,
+        'form': form,
     }
 
     return render(request, "dashboard/dashboard.html", context)
@@ -80,3 +102,4 @@ def create_transaction(request):
     else:
         form = TransactionForm()
     return render(request, 'dashboard/create_transaction.html', {'form': form})
+

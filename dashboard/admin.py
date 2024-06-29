@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Currency, UserCurrencyData, Account, Categories, Transaction
+from .models import Currency, UserCurrencyData, Account, Categories, Transaction, WishlistItem
 
 
 @admin.register(Currency)
@@ -39,3 +39,5 @@ class TransactionAdmin(admin.ModelAdmin):
     )
     search_fields = ("user__username", "account__name", "currency__name")
     list_filter = ("transaction_type", "date")
+
+
