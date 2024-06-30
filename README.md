@@ -22,6 +22,17 @@
    python3 manage.py runserver
    ```
 
-Your application will run on port 8000.
+Your application will run at the address:
+
+http://127.0.0.1:8000/
+
+The admin panel is located at:
+
+http://127.0.0.1:8000/admin/
+
+The default superuser is admin with the password admin.
+
+
+
 ## Example:
 ![Example](example.png)
