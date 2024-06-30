@@ -23,3 +23,5 @@
    ```
 
 Your application will run on port 8000.
+## Example:
+![Example](example.png)
